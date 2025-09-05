@@ -5,7 +5,7 @@ class Resume {
   experience string[]
   skills string[]
 }
-
+//Test
 // Create a function to extract the resume from a string.
 function ExtractResume(resume: string) -> Resume {
   // Specify a client as provider/model-name

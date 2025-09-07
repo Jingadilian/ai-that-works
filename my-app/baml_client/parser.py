@@ -22,11 +22,11 @@ class LlmResponseParser:
     def __init__(self, options: DoNotUseDirectlyCallManager):
         self.__options = options
 
-    def PickAction(
+    def PickBestCategory(
         self, llm_response: str, baml_options: BamlCallOptions = {},
-    ) -> types.HumanMessage:
-        result = self.__options.merge_options(baml_options).parse_response(function_name="PickAction", llm_response=llm_response, mode="request")
-        return typing.cast(types.HumanMessage, result)
+    ) -> typing.Union[typing.Union[types.Category, str], "types.HumanMessage"]:
+        result = self.__options.merge_options(baml_options).parse_response(function_name="PickBestCategory", llm_response=llm_response, mode="request")
+        return typing.cast(typing.Union[typing.Union[types.Category, str], "types.HumanMessage"], result)
 
     
 
@@ -36,10 +36,10 @@ class LlmStreamParser:
     def __init__(self, options: DoNotUseDirectlyCallManager):
         self.__options = options
 
-    def PickAction(
+    def PickBestCategory(
         self, llm_response: str, baml_options: BamlCallOptions = {},
-    ) -> stream_types.HumanMessage:
-        result = self.__options.merge_options(baml_options).parse_response(function_name="PickAction", llm_response=llm_response, mode="stream")
-        return typing.cast(stream_types.HumanMessage, result)
+    ) -> typing.Union[typing.Union[types.Category, str], "stream_types.HumanMessage"]:
+        result = self.__options.merge_options(baml_options).parse_response(function_name="PickBestCategory", llm_response=llm_response, mode="stream")
+        return typing.cast(typing.Union[typing.Union[types.Category, str], "stream_types.HumanMessage"], result)
 
     

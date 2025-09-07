@@ -3,28 +3,46 @@ class HumanMessage {
   message string
 }
 
-function PickAction(state: string) -> HumanMessage {
-  client CustomGeminiFlash
-  prompt #"
-    You are an agent with access to any number of tools.
-
-    {{ ctx.output_format }}
-
-    Help the user by picking an action for the following.
-
-    {{ _.role('user') }}
-    {{ state }}
-  "#
+enum Category {
+  @@dynamic
 }
 
-test HelloWorld {
-  functions [PickAction]
+function PickBestCategory(text: string) -> Category | HumanMessage {
+    client CustomGeminiFlash
+    prompt #"
+        {{ _.role('system') }}
+        Which category best describes the following text?
+
+        {{ ctx.output_format }}
+
+        {{ _.role('user') }}
+        {{ text }}
+    "#
+}
+
+test TestName {
+  functions [PickBestCategory]
+  type_builder {
+    dynamic enum Category {
+      Category1 @alias(k0) @description(#"
+        for placeholder
+      "#)
+      Category2 @alias(k1) @description(#"
+        for debugging
+      "#)
+      Category3 @alias(k2) @description(#"
+        for general use
+      "#) 
+    }
+  }
   args {
-    state #"
-      Why is the sky blue?
+    text #"
+      debug
     "#
   }
 }
+
+
 
 
 

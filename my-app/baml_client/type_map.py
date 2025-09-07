@@ -20,4 +20,6 @@ type_map = {
     "stream_types.HumanMessage": stream_types.HumanMessage,
 
 
+    "types.Category": types.Category,
+
 }

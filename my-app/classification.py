@@ -22,9 +22,22 @@ class Category:
 
 def load_categories() -> list[Category]:
     return [
-        Category(name="Category1", embedding_text="for placeholder", llm_description="for placeholder"),
-        Category(name="Category2", embedding_text="for debugging", llm_description="for debugging"),
-        Category(name="Category3", embedding_text="for general use", llm_description="for general use"),
+        Category(name="Search Products", embedding_text="Find products", llm_description="User is looking to search for products"),
+        Category(name="Buy Product", embedding_text="Buy products", llm_description="User is looking to buy a product"),
+        Category(name="View Product Details", embedding_text="Product details", llm_description="User wants to view detailed information about a product"),
+        Category(name="Add to Cart", embedding_text="Add item to cart", llm_description="User intends to add a product to their shopping cart"),
+        Category(name="Checkout", embedding_text="Proceed to checkout", llm_description="User is ready to purchase and wants to checkout"),
+        Category(name="Apply Discount Code", embedding_text="Use discount code", llm_description="User wants to apply a discount code to their purchase"),
+        Category(name="Track Order", embedding_text="Order tracking", llm_description="User wants to track the status of their order"),
+        Category(name="Return Item", embedding_text="Return product", llm_description="User wants to return a purchased item"),
+        Category(name="Contact Support", embedding_text="Customer support", llm_description="User needs assistance from customer support"),
+        Category(name="Read Reviews", embedding_text="Product reviews", llm_description="User wants to read reviews about a product"),
+        Category(name="Compare Products", embedding_text="Compare items", llm_description="User is comparing different products"),
+        Category(name="View Wishlist", embedding_text="Wishlist", llm_description="User wants to view their wishlist"),
+        Category(name="Search Deals", embedding_text="Find deals", llm_description="User is looking for deals or discounts"),
+        Category(name="Sign Up", embedding_text="Create account", llm_description="User wants to sign up for an account"),
+        Category(name="Login", embedding_text="User login", llm_description="User wants to log into their account"),
+        Category(name="Logout", embedding_text="User logout", llm_description="User wants to log out of their account")
     ]
 
 def embed(query: str) -> list[float]:
@@ -65,5 +78,5 @@ def pick_category(query: str) -> str:
     return best_category.name
 
 if __name__ == "__main__":
-    print(pick_category("I need to debug something"))
+    print(pick_category("How to return an item I bought last week?"))
 

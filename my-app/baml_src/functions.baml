@@ -1,43 +1,30 @@
-// Defining a data model.
-class Resume {
-  name string
-  email string
-  experience string[]
-  skills string[]
+class HumanMessage {
+  message_type "request_clarification" | "respond_to_user"
+  message string
 }
-//Test
-// Create a function to extract the resume from a string.
-function ExtractResume(resume: string) -> Resume {
-  // Specify a client as provider/model-name
-  // you can use custom LLM params with a custom client name from clients.baml like "client CustomHaiku"
-  client CustomGeminiFlash // Set GOOGLE_API_KEY to use this client.
+
+function PickAction(state: string) -> HumanMessage {
+  client CustomGeminiFlash
   prompt #"
-    Extract from this content:
-    {{ resume }}
+    You are an agent with access to any number of tools.
 
     {{ ctx.output_format }}
+
+    Help the user by picking an action for the following.
+
+    {{ _.role('user') }}
+    {{ state }}
   "#
 }
 
-
-
-
-// Test the function with a sample resume. Open the VSCode playground to run this.
-test vaibhav_resume {
-  functions [ExtractResume]
+test HelloWorld {
+  functions [PickAction]
   args {
-    resume #"
-      Vaibhav Gupta
-      vbv@boundaryml.com
-
-      Experience:
-      - Founder at BoundaryML
-      - CV Engineer at Google
-      - CV Engineer at Microsoft
-
-      Skills:
-      - Rust
-      - C++
+    state #"
+      Why is the sky blue?
     "#
   }
 }
+
+
+

@@ -26,11 +26,9 @@ class StreamState(BaseModel, typing.Generic[StreamStateValueT]):
 # Generated classes (1)
 # #########################################################################
 
-class Resume(BaseModel):
-    name: typing.Optional[str] = None
-    email: typing.Optional[str] = None
-    experience: typing.List[str]
-    skills: typing.List[str]
+class HumanMessage(BaseModel):
+    message_type: typing.Optional[typing.Union[str, str]] = None
+    message: typing.Optional[str] = None
 
 # #########################################################################
 # Generated type aliases (0)

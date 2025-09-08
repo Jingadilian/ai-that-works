@@ -1,0 +1,29 @@
+# Testing dependencies for my-app
+# Install with: pip install -r requirements-test.txt
+
+# Core testing framework
+pytest>=7.0.0
+pytest-mock>=3.10.0
+
+# Test utilities
+pytest-cov>=4.0.0          # Coverage reporting
+pytest-xdist>=3.0.0        # Parallel test execution  
+pytest-timeout>=2.1.0      # Test timeouts
+pytest-html>=3.1.0         # HTML test reports
+
+# Mocking and fixtures
+responses>=0.22.0          # HTTP request mocking
+freezegun>=1.2.0           # Time mocking
+factory-boy>=3.2.0         # Test data generation
+
+# Code quality (optional but recommended)
+black>=23.0.0              # Code formatting
+flake8>=6.0.0              # Linting
+mypy>=1.0.0                # Type checking
+
+# Dependencies that should match main requirements
+numpy>=1.24.0
+pydantic>=2.0.0
+
+# Note: Main application dependencies should be installed separately
+# This file only contains testing-specific packages
